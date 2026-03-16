@@ -8,7 +8,10 @@ import (
 	"novel_translate_indonesia/internal/service"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/compress"
+	"github.com/gofiber/fiber/v2/middleware/helmet"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/template/html/v2"
 	"github.com/joho/godotenv"
 	"os"
@@ -29,6 +32,9 @@ func main() {
 
 	// Middleware
 	app.Use(logger.New())
+	app.Use(recover.New())
+	app.Use(compress.New())
+	app.Use(helmet.New())
 	app.Static("/static", "./static")
 
 	// Initialize Repositories and Services
