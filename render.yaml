@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: maidnovel
+    env: go
+    plan: free
+    buildCommand: go build -o novel_app ./cmd/server/main.go
+    startCommand: ./novel_app
+    envVars:
+      - key: OPENROUTER_API_KEY
+        sync: false # Set manually in Render dashboard
+      - key: PORT
+        value: 3000
+    disk:
+      name: novel-db
+      mountPath: /data
+      sizeGB: 1
