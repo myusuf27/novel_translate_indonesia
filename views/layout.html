@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}} - Novel Translate</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/app.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="/">MaidNovel</a></h1>
+            <nav style="display: flex; align-items: center; gap: 16px;">
+                <button id="theme-toggle" class="btn" title="Ganti Tema"
+                    style="background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color); padding: 8px;">
+                    <span id="theme-toggle-dark-icon" style="display: none;">🌙</span>
+                    <span id="theme-toggle-light-icon">☀️</span>
+                </button>
+                <button hx-post="/sync" hx-target="#sync-status" hx-indicator="#sync-loading" class="btn btn-sync">
+                    Sinkronkan Chapter
+                </button>
+                <div id="sync-loading" class="htmx-indicator"
+                    style="margin-left: 10px; font-size: 0.8rem; color: var(--text-muted);">
+                    Sinkronisasi...
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="sync-status"></div>
+        {{embed}}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p style="font-size: 0.9rem;">Tekan "Sinkronkan Chapter" di kanan atas untuk mengambil data.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<article class="reading-area">
+    <header class="chapter-header">
+        <a href="/" class="btn-back">← Kembali ke Daftar</a>
+        <h2>{{.Chapter.Title}}</h2>
+        <div class="controls">
+            <button hx-post="/chapter/{{.Chapter.ID}}/translate" hx-target="#chapter-content"
+                hx-indicator="#loading-skeleton" class="btn btn-translate">
+                Perbaiki Bahasa (AI)
+            </button>
+        </div>
+    </header>
+
+    <div class="content-single">
+        <div class="content-pane">
+            <!-- Skeleton Loader (Hidden by default, shown during HTMX request) -->
+            <div id="loading-skeleton" class="htmx-indicator">
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text" style="width: 60%"></div>
+            </div>
+
+            <!-- Content Container -->
+            <div id="chapter-content" class="text-content">
+                {{if .Chapter.ContentTranslated}}
+                {{.Chapter.ContentTranslated}}
+                {{else}}
+                {{.Chapter.ContentRaw}}
+                {{end}}
+            </div>
+        </div>
+    </div>
+</article>

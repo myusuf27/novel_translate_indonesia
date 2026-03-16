@@ -1,0 +1,22 @@
+<div class="hero">
+    <h2>{{.Title}}</h2>
+    <p>Apoteker di istana bagian dalam, Maomao, memecahkan misteri dengan pengetahuannya yang mendalam tentang
+        obat-obatan.</p>
+</div>
+
+<div class="chapter-list">
+    <h3>Daftar Chapter</h3>
+    <div class="grid">
+        {{range .Chapters}}
+        <a href="/chapter/{{.ID}}" class="chapter-card {{if eq .Status " refined"}}refined{{end}}">
+            <span class="chapter-title">{{.Title}}</span>
+            <span class="chapter-badge">{{if eq .Status "refined"}}Selesai Diperbaiki{{else}}Tertunda{{end}}</span>
+        </a>
+        {{else}}
+        <div class="placeholder">
+            <p>Belum ada chapter tersimpan.</p>
+            <p style="font-size: 0.9rem;">Tekan "Sinkronkan Chapter" di kanan atas untuk mengambil data.</p>
+        </div>
+        {{end}}
+    </div>
+</div>
