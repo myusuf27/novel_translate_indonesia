@@ -10,6 +10,8 @@ services:
         sync: false # Set manually in Render dashboard
       - key: PORT
         value: 3000
+      - key: DATABASE_PATH
+        value: /data/novel.db
     disk:
       name: novel-db
       mountPath: /data
